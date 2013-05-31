@@ -1,3 +1,37 @@
+%script{type: "text/x-handlebars", id: "application" }
+  .row
+    .large-12.columns
+      %h1 Menu
+      %hr
+      {{ outlet }}
 
-%script{ type: "text/x-handlebars", id: "index" }
- %h1 Hello Ember
+%script{type: "text/x-handlebars", id: "characters"}
+  .row
+    .large-4.columns
+      {{ partial "charactersMenu" }}
+    .large-8.columns
+      {{render 'initiative' }}
+      %hr
+      {{ outlet }}
+
+%script{type: "text/x-handlebars", id: "_charactersMenu"}
+  %h2 Characters
+  %ul
+  {{#each character in controller}}
+  {{#linkTo "character" character class="button"}}{{ character.name }} {{/linkTo}}
+  {{/each}}
+
+%script{type: "text/x-handlebars", id:"character"}
+  .row
+    .large-8
+      %h2 Character
+      %p {{ name }}
+
+%script{type: "text/x-handlebars", id:"initiative"}
+  .row
+    .large-8
+      %h1 Initiative
+      %ul
+        {{#each character in controller}}
+        %li {{ character.name }}
+        {{/each}}
