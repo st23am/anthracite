@@ -1,7 +1,8 @@
+
 %script{type: "text/x-handlebars", id: "application" }
   .row
     .large-12.columns
-      %h1 Menu
+      %h1 Tracker
       %hr
       {{ outlet }}
 
@@ -15,23 +16,28 @@
       {{ outlet }}
 
 %script{type: "text/x-handlebars", id: "_charactersMenu"}
-  %h2 Characters
+  %h3 Characters
   %ul
-  {{#each character in controller}}
-  {{#linkTo "character" character class="button"}}{{ character.name }} {{/linkTo}}
-  {{/each}}
+    {{#each character in controller}}
+    %li {{#linkTo "character" character class="button"}}  {{ character.name }} {{/linkTo}}
+    {{/each}}
 
 %script{type: "text/x-handlebars", id:"character"}
   .row
     .large-8
-      %h2 Character
-      %p {{ name }}
+      %h3 {{ name }}
+      %ul
+        %li HP: {{ hp }}
+        %li AC: {{ ac }}
 
 %script{type: "text/x-handlebars", id:"initiative"}
   .row
     .large-8
-      %h1 Initiative
+      %h3 Initiative
       %ul
         {{#each character in controller}}
-        %li {{ character.name }}
+        {{#linkTo "character" character class="initiative"}}
+        %li.panel {{ character.name }}
+        {{/linkTo}}
         {{/each}}
+
