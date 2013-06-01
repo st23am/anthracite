@@ -2,7 +2,6 @@
 %script{type: "text/x-handlebars", id: "application" }
   .row
     .large-12.columns
-      %h1 Tracker
       %hr
       {{ outlet }}
 
@@ -10,13 +9,14 @@
   .row
     .large-4.columns
       {{ partial "charactersMenu" }}
-    .large-8.columns
+    .large-5.columns
       {{render 'initiative' }}
-      %hr
+    .large-3.columns
       {{ outlet }}
 
 %script{type: "text/x-handlebars", id: "_charactersMenu"}
   %h3 Characters
+  {{ view Ember.TextField id="new-character" placeholder="Create a new Character" valueBinding="newName" action="createCharacter" }}
   %ul
     {{#each character in controller}}
     %li {{#linkTo "character" character class="button"}}  {{ character.name }} {{/linkTo}}
@@ -24,11 +24,23 @@
 
 %script{type: "text/x-handlebars", id:"character"}
   .row
-    .large-8
+    .large-6.columns
       %h3 {{ name }}
+  .row
+    .large-6.columns
       %ul
         %li HP: {{ hp }}
+        %li Str: 10
+        %li Agi: 13
+        %li Con: 13
+        %li Per: 13
+        %li Int: 13
+        %li Luck: 13
+
+    .large-6.columns
+      %ul
         %li AC: {{ ac }}
+        %li Init Score: {{ init_score }}
 
 %script{type: "text/x-handlebars", id:"initiative"}
   .row
@@ -37,7 +49,9 @@
       %ul
         {{#each character in controller}}
         {{#linkTo "character" character class="initiative"}}
-        %li.panel {{ character.name }}
+        %li.panel.initiative <small>{{ character.init_score }}</small> {{ character.name }}
         {{/linkTo}}
+        {{ else }}
+        %h3 Drag a Character over to add it to Initiative
         {{/each}}
 
