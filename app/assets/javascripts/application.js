@@ -15,8 +15,8 @@
 //= require foundation
 //= require turbolinks
 //= require handlebars
-//= require ember-1.0.0-rc.4
-//= require ember-data-0.13
+//= require ember-1.0.0-rc.5
+//= require ember-data-latest
 //= require app
 //= require_tree .
 

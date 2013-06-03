@@ -13,7 +13,7 @@ App.IndexRoute = Ember.Route.extend
 
 App.ApplicationRoute = Ember.Route.extend
   setupController: ->
-    @controllerFor('initiative').set('model', App.Character.find())
+    @controllerFor('initiative').set('model', App.Initiative.find())
 
 App.CharactersRoute = Ember.Route.extend
   model: ->
@@ -31,6 +31,8 @@ App.InitiativeController = Ember.ArrayController.extend
   sortProperties: ['init_score', 'init_mod']
   sortAscending: false
 
+App.Initiative = DS.Model.extend
+  character: DS.belongsTo('App.Character')
 
 App.Character = DS.Model.extend
   name:         DS.attr('string')
@@ -60,3 +62,6 @@ App.Character.FIXTURES = [
   { id: 2, name: "Bob",  init_score: 5 , init_mod: 2, hp: '10', ac: '14'  },
   { id: 3, name: "Dave", init_score: 12, init_mod: 3, hp: '21', ac: '16' }]
 
+App.Initiative.FIXTURES = [
+  { id: 1, character: 1 },
+  { id: 2, character: 2 }]
