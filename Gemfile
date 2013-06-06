@@ -17,7 +17,6 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
-
 gem "active_model_serializers"
 gem 'decent_exposure'
 gem 'haml'
@@ -26,6 +25,7 @@ gem 'pg'
 gem 'zurb-foundation'
 
 group :development, :test do
+  gem 'debugger'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false

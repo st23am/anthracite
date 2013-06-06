@@ -1,7 +1,9 @@
+#= require_tree "./templates"
+
 window.App = Ember.Application.create()
 
 App.Store = DS.Store.extend
-  adapter: 'DS.FixtureAdapter'
+  adapter: 'DS.RESTAdapter'
 
 App.Router.map ->
   @resource 'characters', ->
@@ -13,7 +15,8 @@ App.IndexRoute = Ember.Route.extend
 
 App.ApplicationRoute = Ember.Route.extend
   setupController: ->
-    @controllerFor('initiative').set('model', App.Initiative.find())
+    @controllerFor('initiative').set('model', App.Character.find()
+      .filterProperty('inCombat', true))
 
 App.CharactersRoute = Ember.Route.extend
   model: ->
@@ -31,15 +34,12 @@ App.InitiativeController = Ember.ArrayController.extend
   sortProperties: ['init_score', 'init_mod']
   sortAscending: false
 
-App.Initiative = DS.Model.extend
-  character: DS.belongsTo('App.Character')
-
 App.Character = DS.Model.extend
   name:         DS.attr('string')
-  init_score:   DS.attr('number')
+  initScore:    DS.attr('number')
   name:         DS.attr('string')
   hp:           DS.attr('string')
-  init_mod:     DS.attr('number')
+  initMod:      DS.attr('number')
   strength:     DS.attr('string')
   agility:      DS.attr('string')
   stamina:      DS.attr('string')
@@ -51,17 +51,10 @@ App.Character = DS.Model.extend
   will:         DS.attr('string')
   alignment:    DS.attr('string')
   occupation:   DS.attr('string')
-  player_class: DS.attr('string')
+  playerClass:  DS.attr('string')
   player:       DS.attr('string')
   speed:        DS.attr('number')
   details:      DS.attr('string')
   ac:           DS.attr('number')
+  inCombat:     DS.attr('boolean')
 
-App.Character.FIXTURES = [
-  { id: 1, name: "Tim",  init_score: 5,  init_mod: 1, hp: '4',  ac: '12' },
-  { id: 2, name: "Bob",  init_score: 5 , init_mod: 2, hp: '10', ac: '14'  },
-  { id: 3, name: "Dave", init_score: 12, init_mod: 3, hp: '21', ac: '16' }]
-
-App.Initiative.FIXTURES = [
-  { id: 1, character: 1 },
-  { id: 2, character: 2 }]

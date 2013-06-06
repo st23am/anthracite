@@ -47,9 +47,9 @@
     .large-8
       %h3 Initiative
       %ul
-        {{#each initiative in controller}}
-        {{#linkTo "character" initiative.character class="initiative"}}
-        %li.panel.initiative <small>{{ initiative.character.init_score }}</small> {{ initiative.character.name }}
+        {{#each character in controller}}
+        {{#linkTo "character" character class="initiative"}}
+        %li.panel.initiative <small>{{ character.init_score }}</small> {{ character.name }}
         {{/linkTo}}
         {{ else }}
         %h5 Drag a Character over to add it to Initiative

@@ -18,6 +18,5 @@
 //= require ember-1.0.0-rc.5
 //= require ember-data-latest
 //= require app
-//= require_tree .
 
 $(function(){ $(document).foundation(); });
