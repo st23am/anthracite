@@ -17,30 +17,36 @@
 %script{type: "text/x-handlebars", id: "_charactersMenu"}
   %h3 Characters
   {{ view Ember.TextField id="new-character" placeholder="Create a new Character" valueBinding="newName" action="createCharacter" }}
-  %ul
-    {{#each character in controller}}
-    %li {{#linkTo "character" character class="button"}}  {{ character.name }} {{/linkTo}}
-    {{/each}}
+  .panel
+    %ul
+      {{#each character in controller}}
+      %li
+        <button {{action addToInitiative character target="controller"}}>
+        {{ character.name }}
+        </button>
+        {{#linkTo "character" character class=""}} Show {{/linkTo}}
+      {{/each}}
 
 %script{type: "text/x-handlebars", id:"character"}
-  .row
-    .large-6.columns
-      %h3 {{ name }}
-  .row
-    .large-6.columns
-      %ul
-        %li HP: {{ hp }}
-        %li Str: 10
-        %li Agi: 13
-        %li Con: 13
-        %li Per: 13
-        %li Int: 13
-        %li Luck: 13
+  .panel
+    .row
+      .large-6.columns
+        %h3 {{ name }}
+    .row
+      .large-6.columns
+        %ul
+          %li HP: {{ hp }}
+          %li Str: 10
+          %li Agi: 13
+          %li Con: 13
+          %li Per: 13
+          %li Int: 13
+          %li Luck: 13
 
-    .large-6.columns
-      %ul
-        %li AC: {{ ac }}
-        %li Init Score: {{ init_score }}
+      .large-6.columns
+        %ul
+          %li AC: {{ ac }}
+          %li Init Score: {{ init_score }}
 
 %script{type: "text/x-handlebars", id:"initiative"}
   .row

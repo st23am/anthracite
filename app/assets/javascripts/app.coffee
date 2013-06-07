@@ -15,8 +15,7 @@ App.IndexRoute = Ember.Route.extend
 
 App.ApplicationRoute = Ember.Route.extend
   setupController: ->
-    @controllerFor('initiative').set('model', App.Character.find()
-      .filterProperty('inCombat', true))
+    @controllerFor('initiative').set('model', App.Character.find())
 
 App.CharactersRoute = Ember.Route.extend
   model: ->
@@ -30,7 +29,16 @@ App.CharactersController = Ember.ArrayController.extend
     @set('newName', '')
     character.save()
 
+  addToInitiative: (character) ->
+    character.set('inCombat', true)
+    character.save()
+
+  sortProperties: ['name']
+
 App.InitiativeController = Ember.ArrayController.extend
+  inCombatCharacters:  ->
+    @model.filterProperty('inCombat', true)
+
   sortProperties: ['init_score', 'init_mod']
   sortAscending: false
 
