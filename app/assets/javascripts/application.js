@@ -17,6 +17,7 @@
 //= require handlebars
 //= require ember-1.0.0-rc.5
 //= require ember-data-latest
+//= require_tree ./templates
 //= require app
 
 $(function(){ $(document).foundation(); });

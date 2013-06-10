@@ -15,7 +15,7 @@
       {{ outlet }}
 
 %script{type: "text/x-handlebars", id: "_charactersMenu"}
-  %h3 Characters
+  %h3.characters Characters
   {{ view Ember.TextField id="new-character" placeholder="Create a new Character" valueBinding="newName" action="createCharacter" }}
   .panel
     %ul
@@ -51,11 +51,16 @@
 %script{type: "text/x-handlebars", id:"initiative"}
   .row
     .large-8
-      %h3 Initiative
+      %h3.initiative Initiative
       %ul
         {{#each character in controller}}
         {{#linkTo "character" character class="initiative"}}
-        %li.panel.initiative <small>{{ character.init_score }}</small> {{ character.name }}
+        %li.panel.initiative
+          <small>{{ character.init_score }}</small> {{ character.name }}
+          <span class="attribute">HP: {{ character.hp }}</span>
+          <span class="attribute">AC: {{ character.ac }}</span>
+          <span class="attribute">R/F/W: {{ character.reflex }} {{ character.fortitude }} {{ character.will }}</span>
+          <button class="small" {{action removeFromInitiative character}}>X</button>
         {{/linkTo}}
         {{ else }}
         %h5 Drag a Character over to add it to Initiative
