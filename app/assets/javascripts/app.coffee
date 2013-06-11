@@ -40,7 +40,8 @@ App.CharactersController = Ember.ArrayController.extend
   sortProperties: ['name']
 
 App.InitiativeController = Ember.ArrayController.extend
-  sortProperties: ['init_score', 'init_mod']
+  content: App.Initiative
+  sortProperties: ['initScore', 'initMod']
   sortAscending: false
 
 App.Initiative = []
@@ -67,5 +68,6 @@ App.Character = DS.Model.extend
   speed:        DS.attr('number')
   details:      DS.attr('string')
   ac:           DS.attr('number')
+  level:        DS.attr('number')
   inCombat:     DS.attr('boolean')
 

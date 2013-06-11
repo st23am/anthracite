@@ -30,24 +30,41 @@
 %script{type: "text/x-handlebars", id:"character"}
   .panel
     .row
-      .large-6.columns
+      .large-12.columns
         %h3 {{ name }}
+
+    .row
+      .large-12.columns
+        %h6 lvl {{ level }} {{ playerClass }}
+    .row
+      .large-12.columns
+        %span Occupation: {{ occupation }}
+    .row
+      .large-12.columns
+        %hr
     .row
       .large-6.columns
         %ul
           %li HP: {{ hp }}
-          %li Str: 10
-          %li Agi: 13
-          %li Con: 13
-          %li Per: 13
-          %li Int: 13
-          %li Luck: 13
-
+          %li AC: {{ ac }}
       .large-6.columns
         %ul
-          %li AC: {{ ac }}
-          %li Init Score: {{ init_score }}
-
+          %li Speed: {{ speed }}
+          %li Init: {{ initMod }}
+          %li alignment: {{ alignment }}
+    .row
+      .large-12.columns
+        %hr
+    .row
+      .large-12.columns
+        %ul
+          %li Str: {{ strength }}
+          %li Agi: {{ agility }}
+          %li Sta: {{ stamina }}
+          %li Per: {{ personality }}
+          %li Int: {{ intelligence }}
+          %li Luck: {{ luck }}
+          %li Lucky Roll: {{ luckyRoll }}
 %script{type: "text/x-handlebars", id:"initiative"}
   .row
     .large-8
@@ -56,7 +73,7 @@
         {{#each character in controller}}
         {{#linkTo "character" character class="initiative"}}
         %li.panel.initiative
-          <small>{{ character.init_score }}</small> {{ character.name }}
+          <small>{{ character.initScore }}</small> {{ character.name }}
           <span class="attribute">HP: {{ character.hp }}</span>
           <span class="attribute">AC: {{ character.ac }}</span>
           <span class="attribute">R/F/W: {{ character.reflex }} {{ character.fortitude }} {{ character.will }}</span>

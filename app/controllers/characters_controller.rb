@@ -34,6 +34,7 @@ class CharactersController < ApplicationController
     params.require(:character).permit(:name,
                                       :init_mod,
                                       :init_score,
+                                      :level,
                                       :hp,
                                       :strength,
                                       :agility,
