@@ -1,0 +1,14 @@
+<h3 class="characters"> Characters </h3>
+{{view Ember.TextField id="new-character" placeholder="Create a new Character" valueBinding="newName" action="createCharacter" }}
+<div class="panel">
+  <ul>
+    {{#each character in controller }}
+    <li>
+      <button {{ action addToInitiative character target="controller"}}>
+      {{ character.name }}
+      </button>
+      {{#linkTo "character" character class=""}} Show {{/linkTo}}
+    </li>
+    {{/each}}
+  </ul>
+</div>

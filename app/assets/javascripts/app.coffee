@@ -1,5 +1,3 @@
-#= require_tree "./templates"
-
 window.App = Ember.Application.create()
 
 App.Store = DS.Store.extend
@@ -20,10 +18,14 @@ App.ApplicationRoute = Ember.Route.extend
 
   events:
     addToInitiative: (character) ->
+      character.set("inCombat", true)
       App.Initiative.pushObject(character)
+      character.save()
 
     removeFromInitiative: (character) ->
+      character.set("inCombat", false)
       App.Initiative.removeObject(character)
+      character.save()
 
 App.CharactersRoute = Ember.Route.extend
   model: ->
@@ -39,12 +41,12 @@ App.CharactersController = Ember.ArrayController.extend
 
   sortProperties: ['name']
 
+App.Initiative = []
+
 App.InitiativeController = Ember.ArrayController.extend
   content: App.Initiative
   sortProperties: ['initScore', 'initMod']
   sortAscending: false
-
-App.Initiative = []
 
 App.Character = DS.Model.extend
   name:         DS.attr('string')

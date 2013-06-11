@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="large-8 columns">
+    <h3 class="initiative"> Initiative </h3>
+    <ul>
+      {{#each character in controller }}
+      {{#linkTo "character" character class="initiative"}}
+        <li class="panel initiative">
+          <small>{{ character.initScore }}</small> {{ character.name }}
+          <span class="attribute">HP: {{ character.hp }} </span>
+          <span class="attribute">AC: {{ character.ac }} </span>
+          <span class="attribute">R/F/W: {{ character.reflex }} {{ character.fortitude }} {{ character.will }} </span>
+          <button class="small" {{ action removeFromInitiative character }}>X</button>
+        </li>
+      {{/linkTo}}
+      {{ else }}
+        <h5> Drag a Character over to add it to Initiative </h5>
+      {{/each}}
+    </ul>
+  </div>
+</div>
