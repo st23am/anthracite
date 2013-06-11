@@ -1,3 +1,4 @@
+
 window.App = Ember.Application.create()
 
 App.Store = DS.Store.extend
@@ -12,26 +13,28 @@ App.IndexRoute = Ember.Route.extend
     @transitionTo('characters')
 
 App.ApplicationRoute = Ember.Route.extend
-
   setupController: ->
     @controllerFor('initiative').set('model', App.Initiative)
 
   events:
     addToInitiative: (character) ->
       character.set("inCombat", true)
-      App.Initiative.pushObject(character)
       character.save()
 
     removeFromInitiative: (character) ->
       character.set("inCombat", false)
-      App.Initiative.removeObject(character)
       character.save()
 
 App.CharactersRoute = Ember.Route.extend
   model: ->
     App.Character.find()
 
+  setupController: (controller, models) ->
+    @controller.set("content", models)
+    App.Initiative.set("content", models)
+
 App.CharactersController = Ember.ArrayController.extend
+
   createCharacter: ->
     name = @get('newName')
     character = App.Character.createRecord
@@ -41,10 +44,13 @@ App.CharactersController = Ember.ArrayController.extend
 
   sortProperties: ['name']
 
-App.Initiative = []
+App.Initiative = Ember.ArrayProxy.createWithMixins
+  content: []
+  arrangedContent: ( ->
+    (@get('content') || []).filterProperty("inCombat", true)
+  ).property("content.@each.inCombat")
 
 App.InitiativeController = Ember.ArrayController.extend
-  content: App.Initiative
   sortProperties: ['initScore', 'initMod']
   sortAscending: false
 

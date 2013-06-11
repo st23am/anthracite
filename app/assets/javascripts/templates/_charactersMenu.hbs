@@ -4,7 +4,8 @@
   <ul>
     {{#each character in controller }}
     <li>
-      <button {{ action addToInitiative character target="controller"}}>
+      {{ character.type }}
+      <button {{ action addToInitiative character }}>
       {{ character.name }}
       </button>
       {{#linkTo "character" character class=""}} Show {{/linkTo}}
