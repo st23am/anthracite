@@ -44,15 +44,25 @@ App.CharactersController = Ember.ArrayController.extend
 
   sortProperties: ['name']
 
+App.CharacterController = Ember.ObjectController.extend
+  isEditing: false
+
+  editCharacter: ->
+    @set('isEditing', true)
+
+  submit: ->
+    @set('isEditing', false)
+    @get('model').save()
+
+App.InitiativeController = Ember.ArrayController.extend
+  sortProperties: ['initScore', 'initMod']
+  sortAscending: false
+
 App.Initiative = Ember.ArrayProxy.createWithMixins
   content: []
   arrangedContent: ( ->
     (@get('content') || []).filterProperty("inCombat", true)
   ).property("content.@each.inCombat")
-
-App.InitiativeController = Ember.ArrayController.extend
-  sortProperties: ['initScore', 'initMod']
-  sortAscending: false
 
 App.Character = DS.Model.extend
   name:         DS.attr('string')

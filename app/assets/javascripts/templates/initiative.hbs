@@ -8,7 +8,7 @@
           <small>{{ character.initScore }}</small> {{ character.name }}
           <span class="attribute">HP: {{ character.hp }} </span>
           <span class="attribute">AC: {{ character.ac }} </span>
-          <span class="attribute">R/F/W: {{ character.reflex }} {{ character.fortitude }} {{ character.will }} </span>
+          <span class="attribute"> <small>R</small>  {{ character.reflex }}  <small>F:</small>  {{ character.fortitude }}  <small>W:</small>  {{ character.will }} </span>
           <button class="small" {{ action removeFromInitiative character }}>X</button>
         </li>
       {{/linkTo}}
