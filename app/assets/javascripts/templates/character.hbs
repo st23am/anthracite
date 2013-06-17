@@ -1,31 +1,51 @@
-
 {{#if isEditing}}
 <div class="panel">
-{{#formFor model}}
-  {{input name}}
-  {{input level}}
-  {{input playerClass }}
-  {{input occupation }}
-  {{input hp }}
-  {{input ac }}
-  {{input speed }}
-  {{input initMod}}
-  {{input alignment }}
-  {{input strength }}
-  {{input agility }}
-  {{input stamina }}
-  {{input personality }}
-  {{input intelligence }}
-  {{input luck }}
-  {{input luckyRoll as="text"}}
-  {{input reflex }}
-  {{input fortitude }}
-  {{input will }}
-  {{input alignment }}
-  {{input details as="text"}}
-  <button {{ action submit }}> Save </button>
-  </div>
-{{/formFor}}
+  {{#formFor model}}
+    <div class="row">
+      <div class="large-12 columns">
+        {{input name}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        {{input initScore }}
+        {{input initMod}}
+        {{input hp }}
+        {{input ac }}
+      </div>
+      <div class="large-6 columns">
+        {{input playerClass }}
+        {{input level}}
+        {{input speed }}
+        {{input occupation }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <hr />
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        {{input strength }}
+        {{input agility }}
+        {{input stamina }}
+        {{input personality }}
+        {{input intelligence }}
+        {{input luck }}
+        {{input reflex }}
+        {{input fortitude }}
+        {{input will }}
+        <button {{ action submit }}> Save </button>
+      </div>
+      <div class="large-6 columns">
+        {{input alignment }}
+        {{input luckyRoll as="text"}}
+        {{input details as="text"}}
+      </div>
+    </div>
+  {{/formFor}}
+</div>
 {{ else }}
 
 <div class="panel">
@@ -77,7 +97,7 @@
   </div>
 
   <div class="row">
-    <div class="large-12 columns">
+    <div class="large-6 columns">
       <li {{action "editCharacter" on="doubleClick"}}> Str: {{ strength }} </li>
       <li {{action "editCharacter" on="doubleClick"}}> Agi: {{ agility }} </li>
       <li {{action "editCharacter" on="doubleClick"}}> Sta: {{ stamina }} </li>
@@ -85,6 +105,21 @@
       <li {{action "editCharacter" on="doubleClick"}}> Int: {{ intelligence }} </li>
       <li {{action "editCharacter" on="doubleClick"}}> Luck: {{ luck }} </li>
       <li {{action "editCharacter" on="doubleClick"}}> Lucky Roll: {{ luckyRoll }} </li>
+    </div>
+    <div class="large-6 columns">
+      <li {{action "editCharacter" on="doubleClick"}}>Reflex: {{reflex }}</li>
+      <li {{action "editCharacter" on="doubleClick"}}>Fortitude: {{fortitude }}</li>
+      <li {{action "editCharacter" on="doubleClick"}}>Will: {{will }}</li>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <hr/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <li {{action "editCharacter" on="doubleClick"}}>Details: {{details}}</li>
     </div>
   </div>
 
@@ -94,13 +129,9 @@
     </div>
   </div>
 
-  <div class="row">
+   <div class="row">
     <div class="large-12 columns">
-      <li {{action "editCharacter" on="doubleClick"}}>Reflex: {{reflex }}</li>
-      <li {{action "editCharacter" on="doubleClick"}}>Fortitude: {{fortitude }}</li>
-      <li {{action "editCharacter" on="doubleClick"}}>Will: {{will }}</li>
-      <li {{action "editCharacter" on="doubleClick"}}>Alignment: {{alignment }}</li>
-      <li {{action "editCharacter" on="doubleClick"}}>Details: {{details}}</li>
+      <button {{action "editCharacter"}} class="small">Edit</button>
     </div>
   </div>
 </div>

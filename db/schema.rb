@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130611044257) do
+ActiveRecord::Schema.define(version: 20130613214553) do
 
   create_table "characters", force: true do |t|
     t.string   "name"
     t.string   "init_mod"
-    t.string   "init_score"
     t.string   "hp"
     t.string   "strength"
     t.string   "agility"
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 20130611044257) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "level"
+    t.integer  "init_score"
   end
 
 end
