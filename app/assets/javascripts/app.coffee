@@ -57,11 +57,6 @@ App.InitiativeController = Ember.ArrayController.extend
   sortProperties: ['initScore', 'initMod']
   sortAscending: false
 
-  #orderBy: (a, b) ->
-  #  return -1  if parseInt(a, 10) < parseInt(b, 10)
-  #  return 1  if parseInt(a, 10) > parseInt(b, 10)
-  #  0
-
 App.Initiative = Ember.ArrayProxy.createWithMixins
   content: []
   arrangedContent: ( ->
@@ -92,21 +87,4 @@ App.Character = DS.Model.extend
   ac:           DS.attr('number')
   level:        DS.attr('number')
   inCombat:     DS.attr('boolean')
-
-
-# Reopen to add coming functionality.
-Ember.SortableMixin.reopen
-  sortFunction: Ember.compare
-  orderBy: (item1, item2) ->
-    result = 0
-    sortProperties = Ember.get(this, "sortProperties")
-    sortAscending = Ember.get(this, "sortAscending")
-    sortFunction = Ember.get(this, "sortFunction")
-    Ember.assert "you need to define `sortProperties`", !!sortProperties
-    Ember.EnumerableUtils.forEach sortProperties, (propertyName) ->
-      if result is 0
-        result = sortFunction(Ember.get(item1, propertyName), Ember.get(item2, propertyName))
-        result = (-1) * result  if (result isnt 0) and not sortAscending
-
-    result
 
